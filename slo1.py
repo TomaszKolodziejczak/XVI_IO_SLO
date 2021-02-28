@@ -1,24 +1,24 @@
 def main():
-    enter_data = get_data_from_user()
-    # file_enter = get_params_from_file()
-    perm_data = perm_construct(enter_data)
+    input_data = get_data_from_user()
+    #  input_file = input()
+    #  file_data = get_params_from_file(input_file)
+    perm_data = perm_construct(input_data)
     cycle_data = count_cycle_data(perm_data)
     result = count_effort(cycle_data)
 
     return result
 
 
-def get_params_from_file():
-    file = input()
+def get_params_from_file(input_file):
     params = []
 
-    with open(file, 'r') as f:
+    with open(input_file, 'r') as f:
 
         content = f.read().splitlines()
         str_values = [line.split() for line in content]
 
         for line in str_values:
-            line = [int(line[idx]) for idx in range(len(line))]
+            line = [int(element) for element in line]
             params.append(line)
 
     params[0] = int(params[0][0])
@@ -28,11 +28,11 @@ def get_params_from_file():
 
 def get_data_from_user():
     n = int(input())
-    m = [int(num) for num in input().split()]  # weights
+    weights = [int(num) for num in input().split()]
     orig = [int(num) for num in input().split()]  # original
     perm = [int(num) for num in input().split()]  # permutation
 
-    return n, m, orig, perm
+    return n, weights, orig, perm
 
 
 def perm_construct(params):
@@ -91,4 +91,6 @@ def count_effort(params):
 
 
 if __name__ == "__main__":
+
     print(main())
+
